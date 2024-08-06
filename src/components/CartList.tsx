@@ -1,6 +1,6 @@
 import {FC} from 'react'
 import Image from 'next/image'
-import { IBook, IBookInCart } from '@/lib/data'
+import { IBookInCart } from '@/lib/data'
 
 interface CartListProps {
     items: IBookInCart[];
@@ -14,10 +14,10 @@ const CartList:FC<CartListProps> = ({items, increaseCount, decreaseCount}) => {
     <>
             <h2 className="text-2xl/[29.26px] text-[#1C2A39]">SHOPPING CART</h2>
 
-            <div className="wrapper w-full flex flex-col gap-x-6">
+            <div className="wrapper w-full flex flex-col gap-x-6 lg:gap-x-3">
             
                 <header className="w-full flex flex-row flex-between text-[#5C6A79] text-[10px]/[12.19px] pb-[30px] ">
-                    <div className='w-[30%] px-2'>ITEM</div>
+                    <div className='w-[45%] px-2'>ITEM</div>
                     <div className='w-[16%] px-2'>QUANTITY</div>
                     <div className='w-[11%] px-2'>PRICE</div>
                     <div className='w-[16%] px-2'>DELIVERY</div>
@@ -26,12 +26,12 @@ const CartList:FC<CartListProps> = ({items, increaseCount, decreaseCount}) => {
 
                     {items.map((item) => (
                         <div key={item.id} className='cartList w-full flex-between flex-row pb-20'>
-                            <div className='book flex w-[30%] gap-x-6'>
+                            <div className='book flex w-[45%] gap-x-6 lg:gap-x-3'>
                                 <div className='cover  relative flex-[0_0_102px] min-h-[145px] shadow-[0_24px_36px_rgba(53,49,84,0.28)]'>
                                 <Image src={item.img} alt="defaultCover"  fill sizes="max-width: 102px" className=""></Image>
                                 </div>
-                                <div className='text flex-[0_0_176px] flex flex-col justify-center'>
-                                    <div className='book-title text-[#1C2A39] text-base/[19.5px] pb-2'>{item.title}</div>
+                                <div className='text flex-[0_0_176px] lg:flex-[0_90px] flex flex-col justify-center'>
+                                    <div className='book-title text-[#1C2A39] text-base/[19.5px] lg:text-xs/[13.62px] lg:flex-wrap pb-2'>{item.title}</div>
                                     <div className='book-author text-[#5C6A79] font-normal text-[10px]/[13.62px] pb-2'>{item.authors}</div>
                                     {item.rating && item.rating > 0 
                                     ?

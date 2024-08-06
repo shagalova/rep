@@ -1,4 +1,3 @@
-// import { StaticImageData } from "next/image";
 
 
 export interface ISliderImage {
@@ -29,26 +28,6 @@ const sliderImages: ISliderImage[] = [
     },
 ]
 
-// export interface IBook {
-// id: string;
-// volumeInfo: {
-//     title: string;
-//     authors?: string[];
-//     categories?: string[];
-//     imageLinks: {
-//         thumbnail?: string;
-//     };
-//     description?: string;
-//     averageRating?: number;
-//     ratingsCount?: number;
-// };
-// saleInfo: {
-//     saleability: string;
-//     retailPrice: {
-//         amount?: number;
-//         currencyCode?: string;
-//     }
-// }
 
 export interface IBook {
     id: string;
@@ -70,34 +49,7 @@ export interface IBook {
     }
 
 
-    // categories?: string | string[];
-    // id: string;
-    // img: string;
-    // title: string;
-    // author: string;
-    // rating?: number;
-    // review?: number;
-    // summary?: string; 
-    // saleability?: boolean; 
-    // price: number;
-    // currency?: string;
-    // count: number;
-// }
-
-
-// const book = {
-//     category: targetCategory,
-//     id: item.id,  string
-//     img: item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail || "./img/img/no_cover_thumb.png",
-//     title: item.volumeInfo.title,
-//     author: item.volumeInfo.authors || "No authors",
-//     rating: item.volumeInfo.averageRating || 0,
-//     review: item.volumeInfo.ratingsCount || 0,
-//     summary: item.volumeInfo.description || item.volumeInfo.title, 
-//     saleability: item.saleInfo.saleability, 
-//     price: item.saleInfo.retailPrice && item.saleInfo.retailPrice.amount,
-//     currency: item.saleInfo.retailPrice && item.saleInfo.retailPrice.currencyCode,
-// }
+    
 export interface IBookInCart {
     id: IBook['id'];
     title: IBook['title'];
@@ -142,7 +94,7 @@ export const booksInCart: IBookInCart[] = [
 
 export interface CategoriesProp {
     categories: string[];
-    // isActive: (e) => void;
+   
 }
 
 export const categories: string[] = [

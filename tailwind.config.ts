@@ -30,6 +30,10 @@ module.exports = {
   ],
   mode: "jit",
   theme: {
+    screens: {
+      'xl': {'min': '1024px', 'max': '1439px'},
+      'lg': {'max': '1023px'},
+    },
     extend: {
       fontFamily: {
         // inter: ["Inter", "sans-serif"],
@@ -51,10 +55,7 @@ module.exports = {
         },
         grey: "#747A88",
       },
-      backgroundImage: {
-        'pattern': "url('/pattern.png')",
-        'hero-bg': "url('/hero-bg.png')"
-      }
+      
     },
   },
   plugins: [],

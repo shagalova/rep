@@ -30,12 +30,12 @@ const Slider:FC = () => {
         }
     },[currentIndex, sliderImages])
 
-    // useEffect(() => {
-    //     let slider = setInterval(() => setCurrentIndex( prevState => prevState + 1), 5000);
-    //     return () => {
-    //         clearInterval(slider);
-    //     }
-    // }, [currentIndex])
+    useEffect(() => {
+        let slider = setInterval(() => setCurrentIndex( prevState => prevState + 1), 5000);
+        return () => {
+            clearInterval(slider);
+        }
+    }, [currentIndex])
 
   return (
     <div className="max-width">
@@ -58,21 +58,22 @@ const Slider:FC = () => {
 
                     return (
                         
-                        <Image src={image} alt={alt} fill priority={true} className={`slider__img ${position}`} key={id} />
+                        // <Image src={image} alt={alt} fill priority={true} className={`slider__img ${position}`} key={id} />
+                        <Image src={image} alt={alt} width={1120} height={702} priority={true} className={`slider__img ${position}`} key={id} />
                         
                     )
                 })}
     </>
             </div>
             
-            <div className="text-lg/[22px] uppercase p-5 content-end shadow-[0_24px_36px_rgba(53,49,84,0.28)] col-start-2 col-end-5 row-start-2 row-end-3 bg-[#9E98DC] z-10">
+            <div className="text-lg/[22px] xl:text-sm/[18px] uppercase p-5 xl:p-2.5 content-end shadow-[0_24px_36px_rgba(53,49,84,0.28)] col-start-2 lg:col-start-[unset] col-end-5 lg:col-end-[unset] row-start-2 lg:row-start-[unset] row-end-3 lg:row-end-[unset] bg-[#9E98DC] z-10 lg:hidden">
                 <Link href="/">
                     <p className="text-[#1C2A39]">Change old book on new</p>
                     <ArrowRight />
                 </Link>  
             </div>
             
-            <div className="text-lg/[22px] uppercase p-5 content-end shadow-[0_24px_36px_rgba(53,49,84,0.28)] col-start-4 col-end-6 row-start-4 row-end-5 bg-[#FF8FE6] pr-12">
+            <div className="text-lg/[22px] xl:text-sm/[18px] uppercase p-5 xl:p-2.5 content-end shadow-[0_24px_36px_rgba(53,49,84,0.28)] col-start-4 lg:col-start-[unset] col-end-6 lg:col-end-[unset] row-start-4 lg:row-start-[unset] row-end-5 lg:row-end-[unset] bg-[#FF8FE6] pr-12 xl:pr-2.5 lg:hidden">
                 <Link href="/">
                     <p className="text-[#1C2A39]">top 100 books 2022</p>
                     <ArrowRight />

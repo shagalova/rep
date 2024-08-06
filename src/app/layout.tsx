@@ -1,8 +1,11 @@
+
 import type { Metadata } from "next";
 import { Montserrat } from 'next/font/google';
 import { Open_Sans } from 'next/font/google';
 import "./globals.css";
 import { Navbar } from "@/components";
+import StoreProvider from "@/app/StoreProvider";
+
 
 
 export const metadata: Metadata = {
@@ -23,9 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontMain.className}>
-      <body className="relative mt-[116px]">
-        <Navbar />
-        {children}
+      <body className="relative mt-[116px] xl:mt-[70px] lg:mt-[40px]">
+        <StoreProvider>
+          <Navbar />
+          {children}
+        </StoreProvider>
+        
       </body>
     </html>
   );
