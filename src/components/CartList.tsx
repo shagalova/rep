@@ -1,6 +1,7 @@
 import {FC} from 'react'
 import Image from 'next/image'
-import { IBookInCart } from '@/lib/data'
+import { IBook, IBookInCart } from '@/lib/data'
+// import { CartState } from '@/store/cartSlice';
 
 interface CartListProps {
     items: IBookInCart[];

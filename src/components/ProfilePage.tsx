@@ -1,7 +1,9 @@
 import {FC} from 'react'
 import Image from 'next/image'
+import { useAppSelector } from '@/store/hooks'
 
 const ProfilePage:FC = () => {
+    // const authState = useAppSelector((state) => state.user.authState)
   return (
     <div className='max-width'>
         <div className="flex justify-between pt-[87px] px-40 xl:px-20 lg:flex-col">

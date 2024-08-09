@@ -4,29 +4,26 @@ import { RootState } from "./index"
 import { User } from "@/lib/data";
 
 // Define a type for the user state
-interface UserType {
-    user: User | null;
+interface IAuthState {
+    authState: boolean;
   }
   
   // Define the initial state using that type
-  const initialState: UserType = {
-    user: null,
+  const initialState: IAuthState = {
+    authState: false,
   };
 
 const userSlice = createSlice({
-    name: "user",
+    name: "auth",
     initialState,
     reducers: {
-        login(state,  action: PayloadAction<User>) {
-            state.user = action.payload;
+        setAuth(state,  action: PayloadAction<boolean>) {
+            state.authState = action.payload;
           },
-        logout (state) {
-            state.user = null;
-        },
     },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { setAuth } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 // export const selectUser = (state: RootState) => state.user.user;

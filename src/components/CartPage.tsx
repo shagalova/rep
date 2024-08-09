@@ -1,20 +1,38 @@
 "use client"
 
-import React, {FC, useEffect, useState } from 'react';
+import React, {FC, useRef } from 'react';
 import { IBookInCart} from "@/lib/data";
 import CartList from './CartList';
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { decreaseCount, increaseCount, selectCartItems, selectCartTotal } from "@/store/cartSlice";
-import { removeFromCart } from "@/store/cartSlice";
+import {  
+    removeFromCart, 
+    decreaseCount, 
+    increaseCount, 
+    selectCartItems, 
+    selectCartTotal, 
+    CartState
+} from "@/store/cartSlice";
 
 
 
-const CartPage:FC = () => {
+const CartPage = () => {
+
+    // const store = useAppStore()
+    
+    // const dispatch = useAppDispatch();
+
+    // const initialized = useRef(false);
+    // const basket = useAppSelector((state) => state.cart.items)    
+    // if (!initialized.current) {
+    //     store.dispatch(initializeItems(items))
+    //     initialized.current = true
+    // }
+    
+    const dispatch = useAppDispatch()
 
     const basket: IBookInCart[] = useAppSelector(selectCartItems);
+    // const basket = useAppSelector((state) => state.cart.items)
     const basketTotalSum = useAppSelector(selectCartTotal);
-
-    const dispatch = useAppDispatch();
 
     const handleMinus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: IBookInCart["id"], count: IBookInCart["count"] ) => {
 
@@ -56,6 +74,7 @@ const CartPage:FC = () => {
            
             <CartList 
             items={basket}
+            // items={items}
             increaseCount={handlePlus}
             decreaseCount={handleMinus}
             

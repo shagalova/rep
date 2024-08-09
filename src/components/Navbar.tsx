@@ -6,8 +6,9 @@ import Modal from "@/components/Modal";
 import {FC, ReactElement, useRef, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { USER_EMAIL, USER_PASS } from "@/lib/vars";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { selectCartItemsCount } from "@/store/cartSlice";
+import { setAuth } from "@/store/userSlice";
 
 
 
@@ -21,6 +22,8 @@ const Navbar:FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     
     const ref = useRef<HTMLFormElement>(null)
+
+    const dispatch = useAppDispatch();
 
     const basketCount = useAppSelector(selectCartItemsCount);
 
@@ -82,8 +85,10 @@ const Navbar:FC = () => {
 
         if(isEmail === USER_EMAIL && isPass === USER_PASS) {
             setShowModal(false);
+            dispatch(setAuth(true))
             router.push("/profile")
         } else {
+            dispatch(setAuth(false))
             alert("Login failed. Please try again")
         }
 

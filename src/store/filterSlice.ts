@@ -1,6 +1,7 @@
 import { categories } from "@/lib/data";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from "@/store";
 
 // // Define a type for the slice state
 interface FilterState {
@@ -23,5 +24,7 @@ const filterSlice = createSlice({
 });
 
 export const { changeFilter } = filterSlice.actions;
+
+export const selectCategory = (state: RootState) => state.filter.filter;
 
 export default filterSlice.reducer;

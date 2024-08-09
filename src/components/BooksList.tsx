@@ -5,6 +5,7 @@ import {  maxResult } from '@/lib/vars';
 import LoadMore from './LoadMore';
 import Card from './Card';
 
+
 const API_KEY = process.env.API_KEY;
 
 async function getBooks( filters: FilterProps ) {
@@ -54,12 +55,13 @@ export default async function BooksList({ searchParams }: BooksListProps) {
             saleability: book.saleInfo.saleability, 
             price: book.saleInfo.retailPrice && book.saleInfo.retailPrice.amount,
             currency: book.saleInfo.retailPrice && book.saleInfo.retailPrice.currencyCode,
+            count: 0,
         }
 
-        const { id, title, authors, img, description, rating, review, categories, saleability, price, currency } = bookItem;
+        const { id, title, authors, img, description, rating, review, categories, saleability, price, currency, count } = bookItem;
         return (
             <div className="output__card flex" key={id}>
-                <Card id={id} img={img} authors={authors} title={title} rating={rating} review={review} description={description} saleability={saleability} price={price} currency={currency} />
+                <Card id={id} img={img} authors={authors} title={title} rating={rating} review={review} description={description} saleability={saleability} price={price} currency={currency} count={count}/>
                        
                     </div>
         )

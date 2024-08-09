@@ -3,8 +3,8 @@
 import { IBook } from '@/lib/data';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useAppDispatch, useAppStore } from "@/store/hooks";
-import { addToCart, removeFromCart } from "@/store/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addToCart, removeFromCart, selectCartItemById } from "@/store/cartSlice";
 
 const Card = ({ 
     id,
@@ -16,10 +16,19 @@ const Card = ({
     description, 
     saleability,
     price,
-    currency    
+    currency, 
+    count = 0,
 }: IBook) => {
 
-const [isInCart, setIsInCart] = useState(false)
+// const [isInCart, setIsInCart] = useState(false)
+const cartItem = useAppSelector(selectCartItemById(id))
+const addedCount = cartItem ? cartItem.count : 0 
+
+// const basket = useAppSelector(selectCartItems)
+// const isInBasket = basket.find((item)=>item.id === id)
+// const itemCount(id) = useAppSelector(selectOneItemCount)
+// const isInBasket = useAppSelector((state) => state.cart.items.find(item => item.id === id))
+// const idInBasket = () => {isInBasket(idInBasket(id))}
 
 const dispatch = useAppDispatch();
 
@@ -35,11 +44,12 @@ const addToBasket = () => {
           review,
           price,
           currency,
-          count: 1
+          count: 1,
+
         })
       );
 
-      setIsInCart(prev => !prev)
+    //   setIsInCart(prev => !prev)
 
     };
 
@@ -47,12 +57,12 @@ const removeFromBasket = () => {
 
     dispatch(removeFromCart({ id }));
 
-    setIsInCart(prev => !prev)
+    // setIsInCart(prev => !prev)
 };
    
 const handleClick = (e:  React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    isInCart === false ? addToBasket() : removeFromBasket()
+    addedCount > 0 ? removeFromBasket() : addToBasket();
 }
 
 
@@ -77,8 +87,13 @@ const handleClick = (e:  React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                             {saleability === "FOR_SALE" 
                             ? <div className="card__text-price text-[13px]/[15.85px] lg:text-[10px]/[12px] text-[#1C2A39] pb-4 lg:pb-2.5"> {price} {currency}</div>
                             : ""}
-                            <button className="card__text-btn w-full h-11 lg:h-[30px] lg:font-medium text-[#4C3DB2] border border-[#4C3DB2] text-[8px]/[10px] uppercase" 
-                            onClick={(e) => handleClick(e)}>{ isInCart === false ? 'buy now' : "in the cart" }</button>
+                            <button className={
+                                addedCount > 0
+                                ? "card__text-btn w-full h-11 lg:h-[30px] lg:font-medium text-[#5C6A79] border border-[#EEEDF5] text-[8px]/[10px] uppercase"
+                                : "card__text-btn w-full h-11 lg:h-[30px] lg:font-medium text-[#4C3DB2] border border-[#4C3DB2] text-[8px]/[10px] uppercase"
+                            }
+                             
+                            onClick={(e) => handleClick(e)}>{ addedCount > 0 ? "in the cart" : 'buy now' }</button>
                         </div>
                         </>
   )

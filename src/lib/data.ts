@@ -34,18 +34,14 @@ export interface IBook {
     title: string;
     authors?: string | string[];
     categories?: string | string[];
-    img: string;
-    
+    img: string;    
     description?: string;
     rating?: number;
     review?: number;
-    
-    
-        saleability: string;
-  
-            price?: number;
-            currency?: string;
-        
+    saleability?: string;  
+    price?: number;
+    currency?: string;
+    count: number;
     }
 
 
@@ -62,6 +58,7 @@ export interface IBookInCart {
     price: IBook['price'];
     currency: IBook['currency'];
     count: number;
+   
 }
 export const booksInCart: IBookInCart[] = [
     {
@@ -74,7 +71,6 @@ export const booksInCart: IBookInCart[] = [
         price: 12.63,
         count: 1,
         currency: 'RUB',
-    
     },
 
     {
